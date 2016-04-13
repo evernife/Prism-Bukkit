@@ -29,7 +29,7 @@ public class WorldEditBridge {
         try {
             final LocalPlayer lp = new BukkitPlayer( Prism.plugin_worldEdit, Prism.plugin_worldEdit.getWorldEdit()
                     .getServer(), player );
-            final LocalWorld lw = lp.getWorld();
+            final LocalWorld lw = (LocalWorld) lp.getWorld();
             region = Prism.plugin_worldEdit.getWorldEdit().getSession( lp ).getSelection( lw );
         } catch ( final IncompleteRegionException e ) {
             return false;
