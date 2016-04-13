@@ -19,14 +19,14 @@ import java.util.regex.Pattern;
 public class RadiusParameter extends SimplePrismParameterHandler {
 
     /**
-     * 
+     *
      */
     public RadiusParameter() {
         super( "Radius", Pattern.compile( "[\\w,:-]+" ), "r" );
     }
 
     /**
-     * 
+     *
      */
     @Override
     public void process(QueryParameters query, String alias, String input, CommandSender sender) {
@@ -42,14 +42,14 @@ public class RadiusParameter extends SimplePrismParameterHandler {
 
         if( TypeUtils.isNumeric( inputValue )
                 || ( inputValue.contains( ":" ) && inputValue.split( ":" ).length >= 1 && TypeUtils
-                        .isNumeric( inputValue.split( ":" )[1] ) ) ) {
+                .isNumeric( inputValue.split( ":" )[1] ) ) ) {
             int radius, desiredRadius;
             Location coordsLoc = null;
             if( inputValue.contains( ":" ) ) {
                 desiredRadius = Integer.parseInt( inputValue.split( ":" )[1] );
                 final String radiusLocOrPlayer = inputValue.split( ":" )[0];
                 if( radiusLocOrPlayer.contains( "," ) && player != null ) { // Coordinates;
-                                                                            // x,y,z
+                    // x,y,z
                     final String[] coordinates = radiusLocOrPlayer.split( "," );
                     if( coordinates.length != 3 ) { throw new IllegalArgumentException(
                             "Couldn't parse the coordinates '" + radiusLocOrPlayer
@@ -91,20 +91,20 @@ public class RadiusParameter extends SimplePrismParameterHandler {
                 query.setRadius( radius );
                 if( coordsLoc != null ) {
                     query.setMinMaxVectorsFromPlayerLocation( coordsLoc ); // We
-                                                                           // need
-                                                                           // to
-                                                                           // set
-                                                                           // this
-                                                                           // *after*
-                                                                           // the
-                                                                           // radius
-                                                                           // has
-                                                                           // been
-                                                                           // set
-                                                                           // or
-                                                                           // it
-                                                                           // won't
-                                                                           // work.
+                    // need
+                    // to
+                    // set
+                    // this
+                    // *after*
+                    // the
+                    // radius
+                    // has
+                    // been
+                    // set
+                    // or
+                    // it
+                    // won't
+                    // work.
                 } else {
                     query.setMinMaxVectorsFromPlayerLocation( player.getLocation() );
                 }
@@ -184,7 +184,7 @@ public class RadiusParameter extends SimplePrismParameterHandler {
     }
 
     /**
-     * 
+     *
      */
     @Override
     public void defaultTo(QueryParameters query, CommandSender sender) {
