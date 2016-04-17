@@ -1,7 +1,8 @@
 language: java
 jdk:
 - oraclejdk8
+only:
+- master-cauldron
+before_install: mvn test
 install: mvn install
 script: mvn package
-deploy:
-  skip_cleanup: true
