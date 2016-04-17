@@ -96,7 +96,7 @@ public class RecorderCommand implements SubHandler {
                     if( conn != null )
                         try {
                             conn.close();
-                        } catch ( final Exception ignored ) {};
+                        } catch ( final Exception ignored ) {}
                 }
             }
             return;

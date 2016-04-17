@@ -17,7 +17,6 @@ public class ItemUtils extends me.botsko.elixr.ItemUtils {
         // Portal
         if( item_id == 90 || item_id == 119 ) { return false; }
         // Monster
-        if( item_id == 383 ) { return false; }
-        return true;
+        return item_id != 383;
     }
 }

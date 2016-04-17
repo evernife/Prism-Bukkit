@@ -90,8 +90,7 @@ public class UseMonitor {
         if( plugin.getConfig().getBoolean( "prism.alerts.uses.ignore-staff" ) && player.hasPermission( "prism.alerts" ) ) { return false; }
 
         // Ignore certain ranks
-        if( player.hasPermission( "prism.bypass-use-alerts" ) ) { return false; }
-        return true;
+        return !player.hasPermission("prism.bypass-use-alerts");
     }
 
     /**
