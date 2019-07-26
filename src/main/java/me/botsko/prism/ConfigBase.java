@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -81,14 +84,16 @@ public class ConfigBase {
      */
     protected FileConfiguration loadConfig(String default_folder, String filename) {
         final File file = getFilename( filename );
-        if( file.exists() ) {
-            return YamlConfiguration.loadConfiguration( file );
-        } else {
+        if( !file.exists() ) {
             // Look for defaults in the jar
             final InputStream defConfigStream = plugin.getResource( default_folder + filename + ".yml" );
-            if( defConfigStream != null ) { return YamlConfiguration.loadConfiguration( defConfigStream ); }
-            return null;
+            try {
+                Files.copy(defConfigStream, file.getAbsoluteFile().toPath(), new CopyOption[]{StandardCopyOption.REPLACE_EXISTING});
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
+        return YamlConfiguration.loadConfiguration( file );
     }
 
     /**
